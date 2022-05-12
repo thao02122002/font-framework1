@@ -1,0 +1,37 @@
+
+<table border="1" class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Avatar</th>
+        <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let teacher of teachers">
+      <td>{{teacher.id}}</td>
+     
+      <td><app-table-name [name] = "teacher.name"></app-table-name></td>
+      <td>{{teacher.age}}</td>
+      <td>
+        <app-table-gender [gender] = "teacher.gender">
+        <!-- <span *ngIf="teacher.gender ===1">name</span>
+        <span *ngIf="teacher.gender ===0">nữ</span> -->
+      </app-table-gender>
+        
+      </td>
+      <!-- <td><img src={{teacher.avatar}} alt="" class="me-2" style="width: 100px"></td> -->
+      <td><img [src]="teacher.avatar" alt="" class="me-2" style="width: 100px"></td>
+     
+      <td>
+        <app-table-status [status] = "teacher.status"></app-table-status>
+        <!-- <span *ngIf="teacher.status ===1">đang làm việc</span>
+        <span *ngIf="teacher.status ===0">đã nghỉ</span> -->
+      </td>
+    </tr>
+  </tbody>
+</table>
