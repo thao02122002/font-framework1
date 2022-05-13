@@ -1,8 +1,15 @@
 
 
 <div class="content" role="main">
-  <button class="btn btn-primary">Danh sách giảng viên</button>
-  <app-table [users]="teachers"></app-table>
+  <button class="btn btn-primary" (click)="changeStatusTable()">{{showStatus ? 'Ân' : 'Hiện'}} bảng teacher</button>
+  <h1 (click)="clickH1()" >Giang viên{{schoolName}}</h1>
+  <app-table [users]="teachers" *ngIf="showStatus"></app-table>
+
+  <!-- cách 2 sử dụng class-->
+  <!-- <app-table [users]="teachers" *ngIf="showStatus" class="{{showStatus ? 'display-block' : 'display-none'}}"></app-table> -->
+
+
+
 
   <div>
     <!--
@@ -13,6 +20,12 @@
     <div>
       tên sv : <app-name [name] = "studentName"></app-name>
       MSV: <app-identity [id] = "identity"></app-identity>
+    </div>
+
+    <div>
+      <form>
+        <input type="text" (keydown)="changeInput($event)" [value]="inputValue">{{inputValue}}
+      </form>
     </div>
     
   </div>

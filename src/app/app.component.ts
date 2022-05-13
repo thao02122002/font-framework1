@@ -50,5 +50,24 @@ export class AppComponent {
     }
    ]
    studentName = "Thaovtp"
-   identity = "PH16945"
+   identity = "PH16945";
+   //định nghĩ hàm khi click vào clickH1 ở bên file html
+   schoolName = ''
+   clickH1() {
+      this.schoolName = 'Poly'
+      
+   }
+   // định nghĩa hàm để click nút ẩn hiện bảng
+   showStatus = true
+   changeStatusTable() {
+     // đảo giá trị
+        this.showStatus = !this.showStatus;
+   }
+
+   //định nghĩa hàm khi thay đổi nội dung input
+   inputValue = 'thaovtp'
+   changeInput(event: any) {
+    this.inputValue =  event.target.value;
+      
+   }
 }
