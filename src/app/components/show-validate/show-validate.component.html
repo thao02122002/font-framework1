@@ -1,0 +1,5 @@
+<span class="text-danger" *ngIf="(field.dirty || field.touched) && field.errors?.['required']">{{key}} k đc để trống</span>
+<span class="text-danger" *ngIf=" (field.dirty || field.touched) && field.errors?.['minlength']"> {{key}} nhập đủ 6 kí tự</span>
+
+    <span class="text-danger" *ngIf="(field.dirty || field.touched) && field.errors?.['min']">{{key}} tối thiểu là 1</span>
+    <span class="text-danger" *ngIf="(field.dirty || field.touched) && field.errors?.['max']">{{key}} tối đa là 100</span>
