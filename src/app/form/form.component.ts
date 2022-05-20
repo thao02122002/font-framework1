@@ -62,7 +62,7 @@ export class FormComponent implements OnInit {
       // 2.1 chỉnh sửa
       const idx = this.users.findIndex((user) => user.id === this.inputValues.id)
       if(idx > -1) {
-        this.users[idx] = userForm.value
+        this.users[idx] = {...userForm.value, id: this.inputValues.id}
       }      
 
     }
