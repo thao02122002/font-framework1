@@ -52,17 +52,42 @@ export class FormComponent implements OnInit {
    const userIds = this.users.map(users => users.id).sort((a,b) => a-b);
    console.log(userIds);
    const newId = userIds[userIds.length -1];
-
-   // thêm vào mảng
+    // nếu inputValues có id = 0 thì thêm mới ->2
+    // nếu inputvalues có id !=0 thì chỉnh sửa -> 2.1
+    if(this.inputValues.id == 0) {
+       //2 thêm vào mảng
    this.users.push({...userForm.value, // lấy ra object gt của form
-     id: newId + 1})
-   // cập nhật lại gt ban đầu
+   id: newId + 1})
+    } else {
+      // 2.1 chỉnh sửa
+      const idx = this.users.findIndex((user) => user.id === this.inputValues.id)
+      if(idx > -1) {
+        this.users[idx] = userForm.value
+      }      
+
+    }
+
+   
+   //3. cập nhật lại gt ban đầu
   //  userForm.resetForm(); // nếu k truyền j thì tất cả về null
   userForm.resetForm({
     name: '',
     age: 0,
     email: ''
   })
+  }
+
+  onDelete(userId: number){
+     this.users = this.users.filter((users) => users.id !== userId);
+  }
+
+  onEdit(userId: number) {
+    // tìm ra user có id  là userId truyền vào 
+    const editUser = this.users.find((user) => user.id === userId);
+    // nếu tồn tại editUser thì sẽ cho hiện dữ liệu ở form
+    if(editUser) {
+       this.inputValues = {...editUser}
+    }
   }
 
 }

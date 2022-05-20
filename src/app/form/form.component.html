@@ -44,7 +44,10 @@
         <td>{{user.email}}</td>
         <td></td>
         <td><img src="{{user.avatar}}" width="100px"></td>
-        <td><button class="btn btn-success">EDIT</button><button class="btn btn-danger">DELETE</button></td>
+        <td>
+          <button class="btn btn-success" (click)="onEdit(user.id)">EDIT</button>
+          <button class="btn btn-danger" (click)="onDelete(user.id)">DELETE</button>
+        </td>
        
         
       </tr>
