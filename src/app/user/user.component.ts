@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class FormComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
-  }
 
-  inputValues = {
+  }
+  formValues = {
     id: 0,
     name: '',
     age: 0,
     email: '',
     sdt: '',
     avatar: ''
-  };
-
+  }
+  // nơi quản lí tất cả dữ liệu và logic của chức năng users
   users = [
     { 
       id:1,
@@ -49,49 +48,47 @@ export class FormComponent implements OnInit {
     }
     
   ]
-  onSubmit(userForm : NgForm) {
-   //1. tìm ra id max    
-   const userIds = this.users.map(users => users.id).sort((a,b) => a-b);
-   console.log(userIds);
-   const newId = userIds[userIds.length -1];
-    // nếu inputValues có id = 0 thì thêm mới ->2
-    // nếu inputvalues có id !=0 thì chỉnh sửa -> 2.1
-    if(this.inputValues.id == 0) {
-       //2 thêm vào mảng
-   this.users.push({...userForm.value, // lấy ra object gt của form
-   id: newId + 1})
-    } else {
-      // 2.1 chỉnh sửa
-      const idx = this.users.findIndex((user) => user.id === this.inputValues.id)
-      if(idx > -1) {
-        this.users[idx] = {...userForm.value, id: this.inputValues.id}
-      }      
-
-    }
-
-   
-   //3. cập nhật lại gt ban đầu
-  //  userForm.resetForm(); // nếu k truyền j thì tất cả về null
-  userForm.resetForm({
+  inputValues = {
+    id: 0,
     name: '',
     age: 0,
     email: '',
     sdt: '',
     avatar: ''
-  })
-  }
+  };
 
-  onDelete(userId: number){
-     this.users = this.users.filter((users) => users.id !== userId);
-  }
+  onParentSubmit( formData: any){
+    console.log('paren form data', formData);
+    //1. tìm ra id max    
+   const userIds = this.users.map(users => users.id).sort((a,b) => a-b);
+   console.log(userIds);
+   const newId = userIds[userIds.length -1];
+    // nếu formValue có id = 0 thì thêm mới ->2
+    // nếu formValue có id !=0 thì chỉnh sửa -> 2.1
+    if(this.formValues.id == 0) {
+       //2 thêm vào mảng
+   this.users.push({...formData, // lấy ra object gt của form
+   id: newId + 1})
+    } else {
+      // 2.1 chỉnh sửa
+      const idx = this.users.findIndex((user) => user.id === this.formValues.id)
+      if(idx > -1) {
+        this.users[idx] = {...formData, id: this.formValues.id}
+      }      
 
-  onEdit(userId: number) {
-    // tìm ra user có id  là userId truyền vào 
-    const editUser = this.users.find((user) => user.id === userId);
-    // nếu tồn tại editUser thì sẽ cho hiện dữ liệu ở form
-    if(editUser) {
-       this.inputValues = {...editUser}
     }
+    
   }
-
+  onParentDelete(userId: number) {
+    this.users = this.users.filter(user => user.id !== userId)
+  }
+  onParentEdit(userId: number) {
+     // tìm ra user có id  là userId truyền vào 
+     const editUser = this.users.find((user) => user.id === userId);
+     // nếu tồn tại editUser thì sẽ cho hiện dữ liệu ở form
+     if(editUser) {
+      return  this.formValues = {...editUser}
+     }
+     return alert('không tìm thấy user')
+  }
 }
