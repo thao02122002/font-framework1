@@ -1,5 +1,14 @@
 <div class="container">
-  <header>HEADER</header>
+  <nav>
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/user">User</a></li>
+      <li><a routerLink="/user/create">ADD</a></li>
+      <li><a routerLink="/user/edit">EDIT</a></li>
+      <li><a routerLink="/admin">ADMIN</a></li>
+
+    </ul>
+  </nav>
   <div>
     <!-- ĐÂY là nơi những phần component thuộc client sẽ đc render -->
     <router-outlet></router-outlet>
