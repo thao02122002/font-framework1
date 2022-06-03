@@ -1,0 +1,24 @@
+<div>
+  <div>
+    <a routerLink="/admin/products/create"><button class="btn btn-primary">CREATE</button></a>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{product._id}}</td>
+        <td>{{product.name}}</td>
+        <td><button class="btn btn-info"><a routerLink="/admin/products/{{product._id}}">DETAIL</a></button>
+          <button class="btn btn-success"><a routerLink="/admin/products/edit/{{product._id}}">EDIT</a></button>
+          <button class="btn btn-danger" (click)="onDelete(product._id)">DELETE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
