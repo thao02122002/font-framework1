@@ -20,7 +20,26 @@ productId: string
          Validators.minLength(6),
          Validators.maxLength(32),
          this.onValidateNameHasProduct
-       ]) // FormControl(giá trị mặc định)
+       ]), // FormControl(giá trị mặc định),
+       price: new FormControl('', [
+        Validators.required
+       
+       ]),
+       salePrice: new FormControl('', [
+        Validators.required
+       ]),
+       description: new FormControl('', [
+        Validators.required
+       ]),
+       imageUrl: new FormControl('', [
+        Validators.required
+       ]),
+       status: new FormControl('', [
+        Validators.required
+       ]),
+      //  category: new FormControl('', [
+      //   Validators.required
+      //  ]),
     });
     this.productId=''
 
