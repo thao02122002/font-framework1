@@ -15,7 +15,8 @@ export class AdminProductDetailComponent implements OnInit {
               private activateRoute: ActivatedRoute) {
                 this.product={
                   _id: '',
-                  name: ''
+                  name: '',
+                  status: 0
                 }
                }
 
