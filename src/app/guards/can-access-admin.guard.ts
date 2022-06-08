@@ -14,9 +14,9 @@ export class CanAccessAdminGuard implements CanActivate {
     state: RouterStateSnapshot):
      Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
        //lấy ra thông tin của user trong ,ocalStorage
-    const loggedInUser = localStorage.getItem('loggedInUser');
+    const currentUser = localStorage.getItem('loggedInUser');
     //kiểm tra xem thông tin có chính xác k
-    if(loggedInUser) {
+    if(currentUser) {
       return true;
     }
     //nếu đúng thì tiếp nếu sai thì quay về login
